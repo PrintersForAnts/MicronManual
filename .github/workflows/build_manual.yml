@@ -1,0 +1,99 @@
+name: Build manual
+
+on:
+  push:
+    branches:
+     - main
+    paths:
+     - 'images/**'
+     - 'manual/**'
+     - '.github/workflows/build_manual.yml'
+  pull_request:
+    branches:
+     - main
+    paths:
+     - 'images/**'
+     - 'manual/**'
+     - '.github/workflows/build_manual.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+ 
+jobs:
+  update:
+    name: Build & update manual
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      date: ""
+    steps:
+      - name: Install pandoc
+        uses: pandoc/actions/setup@v1
+        with:
+          version: 3.6
+
+      - name: Install LaTeX
+        shell: bash
+        run: |
+          sudo apt-get install -y texlive-latex-base \
+              texlive-latex-recommended \
+              texlive-latex-extra \
+              texlive-fonts-recommended \
+              texlive-fonts-extra \
+              texlive-xetex \
+              ghostscript \
+              latexmk
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup GitHub environment
+        shell: bash
+        run: |
+          echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: Update metadata.yml
+        working-directory: ${{ github.workspace }}
+        shell: bash
+        run: |
+          sed --in-place -E -e s'/^date:[[:space:]]+"[0-9-]+"/date: "${{ env.date }}"/g' manual/metadata.yml
+
+      - name: Create PDF
+        working-directory: ${{ github.workspace }}/manual
+        shell: bash
+        run: |
+          make pdf
+
+      - name: Create HTML
+        working-directory: ${{ github.workspace }}/manual
+        shell: bash
+        run: |
+          make html
+
+      - name: Collect files
+        working-directory: ${{ github.workspace }}/manual
+        shell: bash
+        run: |
+          install -d -m 0775 ${{ github.workspace }}/build
+          mv -v manual.pdf ${{ github.workspace }}/build
+          mv -v index.html ${{ github.workspace }}/build
+          rsync -av tool/template/ ${{ github.workspace }}/build/template/
+          rsync -av images/ ${{ github.workspace }}/build/images/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'build'
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        id: deployment
+        uses: actions/deploy-pages@v4
