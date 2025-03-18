@@ -1,15 +1,5 @@
 # Test 123
 
-<div class="test">
-  <p>Image with Dark Overlay</p>
-</div>
-<div class="test2">
-  <p>Text with some translucent background thing</p>
-</div>
-<div class="test3">
-  <p>Floor Fade Test</p>
-</div>
-
 
 | <div class="image-container"> <object class="hardware_svg"> ![Micron_Hexagon](https://github.com/user-attachments/assets/8a5c4950-479c-495c-a214-503d3d23a65d) </object>  <div class="text-bubble"> This is a hex bubble! </div> </div> |<object  class="hardware_svg"> ![Micron_Hexagon](https://github.com/user-attachments/assets/8a5c4950-479c-495c-a214-503d3d23a65d) </object> |<object class="hardware_svg"> ![Micron_Hexagon](https://github.com/user-attachments/assets/8a5c4950-479c-495c-a214-503d3d23a65d) </object> |<object class="hardware_svg"> ![Micron_Hexagon](https://github.com/user-attachments/assets/8a5c4950-479c-495c-a214-503d3d23a65d) </object> |
 | --- | --- | --- | --- |
