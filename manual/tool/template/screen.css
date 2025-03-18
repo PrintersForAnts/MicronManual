@@ -218,13 +218,34 @@ table thead tr {
     
 }
 
-.hardware_svg {
-    width: 50%; /* Scale the image to 50% of its container's width */
-    height: auto; /* Maintain the aspect ratio */
+.image-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .hardware_svg {
+    width: 100%; /* Adjust as needed */
+    height: auto; 
     fill: #54AB3D;
     stroke: #008cff;
     color: var(--accent)
-}
+  }
+
+  .text-bubble {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 20px;
+    font-size: 14px;
+    white-space: nowrap;
+    text-align: center;
+
+    /* Hexagonal Shape */
+    clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+    width: 200px; /* Adjust width as needed */
+    position: absolute;
+    top: 50px; /* Adjust position */
+    left: 100px; /* Adjust position */
+  }
 
 .icon {
     width: 20%; /* Scale the image to 50% of its container's width */

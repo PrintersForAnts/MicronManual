@@ -1,7 +1,17 @@
 # Test 123
 
+<div class="test">
+  <p>Image with Dark Overlay</p>
+</div>
+<div class="test2">
+  <p>Text with some translucent background thing</p>
+</div>
+<div class="test3">
+  <p>Floor Fade Test</p>
+</div>
 
-| <object class="hardware_svg"> ![Micron_Hexagon](https://github.com/user-attachments/assets/8a5c4950-479c-495c-a214-503d3d23a65d) </object> |<object  class="hardware_svg"> ![Micron_Hexagon](https://github.com/user-attachments/assets/8a5c4950-479c-495c-a214-503d3d23a65d) </object> |<object class="hardware_svg"> ![Micron_Hexagon](https://github.com/user-attachments/assets/8a5c4950-479c-495c-a214-503d3d23a65d) </object> |<object class="hardware_svg"> ![Micron_Hexagon](https://github.com/user-attachments/assets/8a5c4950-479c-495c-a214-503d3d23a65d) </object> |
+
+| <div class="image-container"> <object class="hardware_svg"> ![Micron_Hexagon](https://github.com/user-attachments/assets/8a5c4950-479c-495c-a214-503d3d23a65d) </object>  <div class="text-bubble"> This is a hex bubble! </div> </div> |<object  class="hardware_svg"> ![Micron_Hexagon](https://github.com/user-attachments/assets/8a5c4950-479c-495c-a214-503d3d23a65d) </object> |<object class="hardware_svg"> ![Micron_Hexagon](https://github.com/user-attachments/assets/8a5c4950-479c-495c-a214-503d3d23a65d) </object> |<object class="hardware_svg"> ![Micron_Hexagon](https://github.com/user-attachments/assets/8a5c4950-479c-495c-a214-503d3d23a65d) </object> |
 | --- | --- | --- | --- |
 | **Test 123** | **Test 456** | **Test 789** | **Test ABC**|
 | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor a mauris non pellentesque. Donec commodo libero risus, iaculis condimentum odio accumsan eu. | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor a mauris non pellentesque. Donec commodo libero risus, iaculis condimentum odio accumsan eu. | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor a mauris non pellentesque. Donec commodo libero risus, iaculis condimentum odio accumsan eu. | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor a mauris non pellentesque. Donec commodo libero risus, iaculis condimentum odio accumsan eu. | Metric fastener with a cone shaped head and a flat top. | Metric fastener with a cylindrical head and hex drive. The most common fastener used on the Voron. |
