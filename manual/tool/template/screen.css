@@ -224,7 +224,7 @@ table thead tr {
   }
 
   .hardware_svg {
-    width: 100%; /* Adjust as needed */
+    width: 50%; /* Adjust as needed */
     height: auto; 
     fill: #54AB3D;
     stroke: #008cff;
