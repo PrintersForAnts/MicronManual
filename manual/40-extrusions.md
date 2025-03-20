@@ -3,9 +3,10 @@
 ### BLIND JOINTS
 
 
+
 <div class="content-wrapper">
 <div class="image-container">
-<object type="image/svg+xml" data="./images/Vectors/Extrusions/blind_joint/blind1.svg" class="assemble_img">
+<object id="svgObject" type="image/svg+xml"  data="./images/Vectors/Extrusions/blind_joint/blind1.svg" class="assemble_img" >
 BlindJoint
 </object>
 </div>

@@ -34,8 +34,21 @@ dev:: metadata.yml *.md
 		--katex \
 		--dpi=300
 	@echo "HTML file generated: index.html"
-	@explorer.exe "H:\User Folders\Documents\3D Printer\Printers\Voron\PFA\MicronManual\manual\index.html"
 	
+devo:: metadata.yml *.md
+	pandoc \
+		metadata.yml $(shell echo *.md) \
+		--output  index.html \
+		--template $(TOOL_DIR)/template/mdbookDEV.html \
+		--from markdown \
+		--listings \
+		--table-of-contents \
+		--toc-depth=3 \
+		--katex \
+		--dpi=300
+	@echo "HTML file generated: index.html"
+	@explorer.exe "H:\User Folders\Documents\3D Printer\Printers\Voron\PFA\MicronManual\manual\index.html"
+
 
 html:: metadata.yml *.md
 	pandoc \
