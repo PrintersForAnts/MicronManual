@@ -66,11 +66,11 @@ jobs:
         run: |
           sed --in-place -E -e s'/^date:[[:space:]]+"[0-9-]+"/date: "${{ env.date }}"/g' manual/metadata.yml
 
-      - name: Create PDF
-        working-directory: ${{ github.workspace }}/manual
-        shell: bash
-        run: |
-          make pdf
+      #- name: Create PDF
+      #  working-directory: ${{ github.workspace }}/manual
+      #  shell: bash
+      #  run: |
+      #   make pdf
 
       - name: Create HTML
         working-directory: ${{ github.workspace }}/manual
@@ -83,10 +83,10 @@ jobs:
         shell: bash
         run: |
           install -d -m 0775 ${{ github.workspace }}/build
-          mv -v manual.pdf ${{ github.workspace }}/build
           mv -v index.html ${{ github.workspace }}/build
           rsync -av tool/template/ ${{ github.workspace }}/build/template/
           rsync -av images/ ${{ github.workspace }}/build/images/
+        #mv -v manual.pdf ${{ github.workspace }}/build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -27,3 +27,5 @@
 | **M5 SHIM** | **5MM X 47-50MM SHAFT** | **6MM X 3MM MAGNET** | |
 | Not to be confused with stamped washers. These are used in the Z drive assembly. | Steel shaft, 5mm in diameter, 47mm-50mm long with a flat ground on it used in the Z drive shaft assembly. | 6mm Diameter disc magnet, 3mm thick. These are used in various locations of the build, typically held in place with CA glue |  |
 | 5x7x1 DIN 988 |  |  |  |
+
+

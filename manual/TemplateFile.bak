@@ -1,0 +1,13 @@
+### BLIND JOINTS
+
+
+<div class="container" id="imageContainer">
+<object type="image/svg+xml" data="images/Vectors/Extrusions/blind_joint/1515_Blind_Joint_Example.svg" class="hardware_svg">BlindJoint</object>
+<div class="text-bubble bubble-green"  style="top: 20%; left: 10%;">M3x8 BHCS</div>
+<div class="text-bubble bubble-blue"  style="top: 40%; left: 10%;">M3x8 BHCS TEST</div>
+<div class="text-bubble bubble-red"  id="draggableBubble"style="top: 60%; left: 10%;">M3x8 BHCS TEST TEST</div>
+</div>
+
+**Test 123** 
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor a mauris non pellentesque. Donec commodo libero risus, iaculis condimentum odio accumsan eu. 
+

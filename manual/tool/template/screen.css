@@ -95,9 +95,11 @@ h4.main
 }
 h3
 {
-    color: var(--main);
-text-indent: 0.5%;
-border-bottom: 1px solid var(--accent);
+color: var(--main);
+text-indent: 0.2%;
+border-bottom: 4px solid var(--accent);
+margin-bottom: 2%;
+margin-top: 5%;
 }
 
 h5,h4 {  text-align: center; }
@@ -218,34 +220,127 @@ table thead tr {
     
 }
 
-.image-container {
+.container {
     position: relative;
-    display: inline-block;
-  }
-
+    width: 50%; /* Controls overall scaling */
+    max-width: 800px; /* Prevents excessive growth */
+    margin: auto;
+}
+.content-wrapper {
+    display: flex;
+    justify-content:center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 25%;
+    margin: 20px;
+    text-align: left;
+}
   .hardware_svg {
     width: 50%; /* Adjust as needed */
-    height: auto; 
+    height: auto;
     fill: #54AB3D;
     stroke: #008cff;
     color: var(--accent)
   }
-
-  .text-bubble {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 12px 20px;
-    font-size: 14px;
-    white-space: nowrap;
-    text-align: center;
-
-    /* Hexagonal Shape */
-    clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
-    width: 200px; /* Adjust width as needed */
-    position: absolute;
-    top: 50px; /* Adjust position */
-    left: 100px; /* Adjust position */
+  .assemble_img {
+    width: 100%; /* Adjust as needed */
+    height: 50%;
+    display: inline;
+    fill: #54AB3D;
+    stroke: #008cff;
+    color: var(--accent)
   }
+  .qr{
+    width: 30%; /* Adjust as needed */
+    height: auto;
+
+  }
+
+.image-text {
+    font-size: 1.2em; /* Scales with viewport */
+    width: 100%; /* Matches image width */
+    max-width: 400px; /* Same as image max-width */
+    text-align: justify;
+}
+
+.text-title {
+    font-size: 1.5em; /* Slightly larger than body text */
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.text-container {
+    width: 100%; /* Matches image width */
+    max-width: 400px; /* Same as image max-width */
+    text-align: center; /* Centers the title */
+}
+.image-container {
+    width: 50%; /* Ensures image and text match */
+    max-width: 400px; /* Keep within the same limit */
+}
+@media (max-width: 600px) {
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .image-container {
+        width: 100%;
+    }
+  
+    
+}
+.fullPage {
+    width: 100% !important; /* Overrides default width */
+    max-width: none !important; /* Removes any width constraints */
+    height: auto;
+    display: block;
+}
+  .text-bubble {
+    position: absolute;
+            color: white;
+            font-size: 1vw; /* Scales with container */
+            text-align: center;
+            z-index: 10;
+            padding: 0.5em 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: auto;
+            min-width: 1em;
+            width: auto;
+            max-width: none; /* Allows text to expand without wrapping */
+            white-space: nowrap; /* Prevents text from wrapping */
+
+            /* Hexagonal shape */
+            clip-path: polygon(
+                0.5em 0%, calc(100% - 0.5em) 0%, 
+                100% 50%, calc(100% - 0.5em) 100%, 
+                0.5em 100%, 0% 50%
+            );
+
+            /* Scale with the image */
+            transform: translate(-50%, -50%);
+}
+
+/* Different Bubble Colors */
+.bubble-red {
+    background-color: rgba(255, 0, 0, 0.8);
+}
+
+.bubble-blue {
+    background-color: rgba(0, 0, 255, 0.8);
+}
+
+.bubble-green {
+    background-color: rgba(0, 128, 0, 0.8);
+}
+
+.bubble-yellow {
+    background-color: rgba(255, 204, 0, 0.8);
+}
+
+.bubble-purple {
+    background-color: rgba(128, 0, 128, 0.8);
+}
 
 .icon {
     width: 20%; /* Scale the image to 50% of its container's width */
@@ -264,11 +359,18 @@ table thead tr {
 .spanClick{
 
     display: inline-block; 
+    transition: opacity 0.3s ease-in-out;
 }
 
 .objectClick
 {
     position: relative; z-index: -1;
+    
+}
+
+
+.spanClick:hover {
+    opacity: 0.5; /* Visual feedback when hovered */
 }
 
 p
