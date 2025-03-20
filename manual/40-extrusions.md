@@ -5,12 +5,12 @@
 
 <div class="content-wrapper">
 <div class="image-container">
-<object type="image/svg+xml" data="../images/Vectors/Extrusions/blind_joint/blind1.svg" class="assemble_img">
+<object type="image/svg+xml" data="./images/Vectors/Extrusions/blind_joint/blind1.svg" class="assemble_img">
 BlindJoint
 </object>
 </div>
 <div class="image-container">
-<object type="image/svg+xml" data="../images/Vectors/Extrusions/blind_joint/blind2.svg" class="assemble_img">
+<object type="image/svg+xml" data="./images/Vectors/Extrusions/blind_joint/blind2.svg" class="assemble_img">
 BlindJoint
 </object>
 </div>
@@ -23,16 +23,16 @@ Blind Joints provide a cost-effective and rigid assembly method. The head of the
 </p>
 </div>
 </div>
-<a class="aClick " href="https://voron.link/onjwmcd"> <span class="spanClick"><object type="image/svg+xml" data="../images/Vectors/QRCode/blind_joint_QR.svg" class="assemble_img qr objectClick "> Blindjoint Assembly Video </object></a>
+<a class="aClick " href="https://voron.link/onjwmcd"> <span class="spanClick"><object type="image/svg+xml" data="./images/Vectors/QRCode/blind_joint_QR.svg" class="assemble_img qr objectClick "> Blindjoint Assembly Video </object></a>
 
 <div class="content-wrapper">
 <div class="image-container">
-<object type="image/svg+xml" data="../images/Vectors/Extrusions/blind_joint/blind3.svg" class="assemble_img">
+<object type="image/svg+xml" data="./images/Vectors/Extrusions/blind_joint/blind3.svg" class="assemble_img">
 BlindJoint
 </object>
 </div>
 <div class="image-container ">
-<object type="image/svg+xml" data="../images/Vectors/Extrusions/blind_joint/blind4.svg" class="assemble_img">
+<object type="image/svg+xml" data="./images/Vectors/Extrusions/blind_joint/blind4.svg" class="assemble_img">
 BlindJoint
 </object>
 </div>
