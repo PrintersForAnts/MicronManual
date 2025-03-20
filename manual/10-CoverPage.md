@@ -1,2 +1,2 @@
-<img src="images/CoverPage1.png" />
+<img src="../images/CoverPage1.png" />
 
