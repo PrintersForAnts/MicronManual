@@ -1,58 +1,80 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$" $if(dir)$ dir="$dir$" $endif$>
+
 <head>
     <!-- pandoc template based on mdBook theme -->
     <meta charset="utf-8" />
     <meta name="generator" content="pandoc" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-$for(author-meta)$
+    $for(author-meta)$
     <meta name="author" content="$author-meta$" />
-$endfor$
-$if(date-meta)$
+    $endfor$
+    $if(date-meta)$
     <meta name="dcterms.date" content="$date-meta$" />
-$endif$
-$if(keywords)$
+    $endif$
+    $if(keywords)$
     <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
-$endif$
+    $endif$
     <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+    <script src="tool/template/svg-inject.js" type="text/javascript" charset="utf-8"></script>
+    <script src="tool/template/svg-color.js" type="text/javascript" charset="utf-8"></script>
 
-    <link rel="shortcut icon" href="template/favicon.ico">
-    <link rel="stylesheet" href="template/screen.css" />
-    <link rel="stylesheet" href="template/print.css" media="print">
+    <link rel="shortcut icon" href="tool/template/favicon.ico">
+    <link rel="stylesheet" href="tool/template/screen.css" />
+    <link rel="stylesheet" href="tool/template/print.css" media="print">
     <style>
-        code{white-space: pre-wrap;}
-        span.smallcaps{font-variant: small-caps;}
-        span.underline{text-decoration: underline;}
-        div.column{display: inline-block; vertical-align: top; width: 50%;}
-$if(quotes)$
-        q { quotes: "“" "”" "‘" "’"; }
-$endif$
+        code {
+            white-space: pre-wrap;
+        }
+
+        span.smallcaps {
+            font-variant: small-caps;
+        }
+
+        span.underline {
+            text-decoration: underline;
+        }
+
+        div.column {
+            display: inline-block;
+            vertical-align: top;
+            width: 50%;
+        }
+
+        $if(quotes)$ q {
+            quotes: "“" "”" "‘" "’";
+        }
+
+        $endif$
     </style>
-$if(highlighting-css)$
+    $if(highlighting-css)$
     <style>
-    $highlighting-css$
+        $highlighting-css$
     </style>
-$endif$
-$for(css)$
+    $endif$
+    $for(css)$
     <link rel="stylesheet" href="$css$" />
-$endfor$
+    $endfor$
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="template/fontawesome/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="tool/template/fontawesome/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+        rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
-$if(math)$
+    $if(math)$
     $math$
-$endif$
-$for(header-includes)$
+    $endif$
+    $for(header-includes)$
     $header-includes$
-$endfor$
+    $endfor$
 </head>
+
 <body class="light">
 
-$for(include-before)$
+    $for(include-before)$
     $include-before$
-$endfor$
+    $endfor$
 
     <!-- Provide site root to javascript -->
     <script type="text/javascript">
@@ -76,12 +98,10 @@ $endfor$
         } catch (e) { }
     </script>
 
-
-
     <!-- Set the theme before any content is loaded, prevents flash -->
     <script type="text/javascript">
         var theme;
-        try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
         if (theme === null || theme === undefined) { theme = default_theme; }
         document.body.className = theme;
         document.querySelector('html').className = theme + ' js';
@@ -92,12 +112,15 @@ $endfor$
         var html = document.querySelector('html');
         var sidebar = 'hidden';
         if (document.body.clientWidth >= 1080) {
-            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
             sidebar = sidebar || 'visible';
         }
         html.classList.remove('sidebar-visible');
         html.classList.add("sidebar-" + sidebar);
     </script>
+
+
+
 
     <nav id="sidebar" class="sidebar" aria-label="Table of contents">
         <div class="toc">
@@ -112,51 +135,130 @@ $endfor$
             <div id="menu-bar" class="menu-bar">
                 <div id="menu-bar-sticky-container">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fas fa-bars"></i>
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                            aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fas fa-bars" style="cursor: pointer; color: var(--accent)"></i>
                         </button>
                     </div>
 
                     <h1 class="menu-title">$title$</h1>
 
                     <div class="right-buttons">
+                        <!-- Print Button -->
                         <a onclick="window.print()" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fas fa-print"></i>
+                            <i id="print-button" class="fas fa-print" style="cursor: pointer; color: var(--accent)"></i>
                         </a>
+
+                        <!-- PDF Download Button -->
                         <a href="manual.pdf" title="View PDF file" aria-label="View PDF file">
-                            <i class="fas fa-file-pdf"></i>
+                            <i class="fas fa-file-pdf" style="cursor: pointer; color: var(--accent)"></i>
                         </a>
-                        </div>
+
+                        <!-- ACCENT -->
+                        <a id="colorPickerAccentButton">
+                        <i class="fas fa-palette" style="color: var(--accent);"></i>
+                        </a>
+                        <input type="color" id="colorPickerAccent" value="#97fa98" style="display:none;">
+                </div>
+
+
+                <div id="content" class="content">
+                    <main>
+                        $body$
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+
+
+                        <div style="clear: both"></div>
+                    </nav>
                 </div>
             </div>
 
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
 
-            <div id="content" class="content">
-                <main>
-$body$
-                </main>
+            </nav>
 
-                <nav class="nav-wrapper" aria-label="Page navigation">
-                    <!-- Mobile navigation buttons -->
-
-
-
-
-                    <div style="clear: both"></div>
-                </nav>
-            </div>
         </div>
 
-        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+        <script src="tool/template/book.js" type="text/javascript" charset="utf-8"></script>
+        $for(include-after)$
+        $include-after$
+        $endfor$
 
-        </nav>
+        <script>
+input.addEventListener("input", function () {
+    const newColor = input.value;
+    button.querySelector("i").style.color = newColor;
 
-    </div>
+    // Only target paths for the current picker (main or accent)
+    document.querySelectorAll('svg[color]').forEach(svg => {
+        const svgColor = svg.getAttribute('color');
+        if (svgColor !== type) return;
 
-    <script src="template/book.js" type="text/javascript" charset="utf-8"></script>
+        // TYPE 1: Paths inside any <g id^="fill">
+        const groupPaths = svg.querySelectorAll('g[id^="fill"] path');
+        
+        // TYPE 2: Any <path> with matching color attribute
+        const coloredPaths = svg.querySelectorAll(`path[color="${type}"]`);
 
-$for(include-after)$
-    $include-after$
-$endfor$
+        // Combine into a Set to avoid duplicates if any path matches both
+        const allPaths = new Set([...groupPaths, ...coloredPaths]);
+
+        allPaths.forEach(path => {
+            path.removeAttribute('class');     // Remove class like .st0
+            path.style.fill = newColor;        // Apply inline fill
+        });
+    });
+});
+
+</script>
+
+
+
+<script>
+    SVGInject.setOptions({
+      useCache: false, // no caching
+      copyAttributes: true, // do not copy attributes from `<img>` to `<svg>`
+      makeIdsUnique: false, // do not make ids used within the SVG unique   
+      afterInject: function(img, svg) {
+      const targetFill = 'fill:#97fa98';
+      svg.querySelectorAll('path[style]').forEach(path => {
+        const style = path.getAttribute('style');
+        if (style.includes(targetFill)) {
+          // Remove the fill from style string
+          const newStyle = style
+            .split(';')
+            .filter(part => !part.trim().startsWith('fill:#97fa98'))
+            .join(';')
+            .trim();
+
+          if (newStyle) {
+            path.setAttribute('style', newStyle);
+          } else {
+            path.removeAttribute('style');
+          }
+
+          // Add color="accent"
+          path.setAttribute('color', 'accent');
+        }
+      });
+    },
+
+      
+      beforeLoad: function(img) {
+      var path = "https://raw.githubusercontent.com/PrintersForAnts/MicronManual/refs/heads/main/manual/"
+      const rawSrc = img.getAttribute('src') || '';
+      console.log(rawSrc);
+      console.log(path);
+      return path + rawSrc;
+    }
+    });
+  </script>
 </body>
+
+
 </html>
