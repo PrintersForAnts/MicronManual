@@ -16,12 +16,12 @@
     <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
     $endif$
     <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
-    <script src="tool/template/svg-inject.js" type="text/javascript" charset="utf-8"></script>
-    <script src="tool/template/svg-color.js" type="text/javascript" charset="utf-8"></script>
+    <script src="template/svg-inject.js" type="text/javascript" charset="utf-8"></script>
+    <script src="template/svg-color.js" type="text/javascript" charset="utf-8"></script>
 
-    <link rel="shortcut icon" href="tool/template/favicon.ico">
-    <link rel="stylesheet" href="tool/template/screen.css" />
-    <link rel="stylesheet" href="tool/template/print.css" media="print">
+    <link rel="shortcut icon" href="template/favicon.ico">
+    <link rel="stylesheet" href="template/screen.css" />
+    <link rel="stylesheet" href="template/print.css" media="print">
     <style>
         code {
             white-space: pre-wrap;
@@ -57,7 +57,7 @@
     $endfor$
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="tool/template/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="template/fontawesome/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
         rel="stylesheet" type="text/css">
@@ -156,109 +156,108 @@
 
                         <!-- ACCENT -->
                         <a id="colorPickerAccentButton">
-                        <i class="fas fa-palette" style="color: var(--accent);"></i>
+                            <i class="fas fa-palette" style="color: var(--accent);"></i>
                         </a>
                         <input type="color" id="colorPickerAccent" value="#97fa98" style="display:none;">
+                    </div>
+
+
+                    <div id="content" class="content">
+                        <main>
+                            $body$
+                        </main>
+
+                        <nav class="nav-wrapper" aria-label="Page navigation">
+                            <!-- Mobile navigation buttons -->
+
+
+
+
+                            <div style="clear: both"></div>
+                        </nav>
+                    </div>
                 </div>
 
+                <nav class="nav-wide-wrapper" aria-label="Page navigation">
 
-                <div id="content" class="content">
-                    <main>
-                        $body$
-                    </main>
+                </nav>
 
-                    <nav class="nav-wrapper" aria-label="Page navigation">
-                        <!-- Mobile navigation buttons -->
-
-
-
-
-                        <div style="clear: both"></div>
-                    </nav>
-                </div>
             </div>
 
-            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <script src="template/book.js" type="text/javascript" charset="utf-8"></script>
+            $for(include-after)$
+            $include-after$
+            $endfor$
 
-            </nav>
+            <script>
+                input.addEventListener("input", function () {
+                    const newColor = input.value;
+                    button.querySelector("i").style.color = newColor;
 
-        </div>
+                    // Only target paths for the current picker (main or accent)
+                    document.querySelectorAll('svg[color]').forEach(svg => {
+                        const svgColor = svg.getAttribute('color');
+                        if (svgColor !== type) return;
 
-        <script src="tool/template/book.js" type="text/javascript" charset="utf-8"></script>
-        $for(include-after)$
-        $include-after$
-        $endfor$
+                        // TYPE 1: Paths inside any <g id^="fill">
+                        const groupPaths = svg.querySelectorAll('g[id^="fill"] path');
 
-        <script>
-input.addEventListener("input", function () {
-    const newColor = input.value;
-    button.querySelector("i").style.color = newColor;
+                        // TYPE 2: Any <path> with matching color attribute
+                        const coloredPaths = svg.querySelectorAll(`path[color="${type}"]`);
 
-    // Only target paths for the current picker (main or accent)
-    document.querySelectorAll('svg[color]').forEach(svg => {
-        const svgColor = svg.getAttribute('color');
-        if (svgColor !== type) return;
+                        // Combine into a Set to avoid duplicates if any path matches both
+                        const allPaths = new Set([...groupPaths, ...coloredPaths]);
 
-        // TYPE 1: Paths inside any <g id^="fill">
-        const groupPaths = svg.querySelectorAll('g[id^="fill"] path');
-        
-        // TYPE 2: Any <path> with matching color attribute
-        const coloredPaths = svg.querySelectorAll(`path[color="${type}"]`);
+                        allPaths.forEach(path => {
+                            path.removeAttribute('class');     // Remove class like .st0
+                            path.style.fill = newColor;        // Apply inline fill
+                        });
+                    });
+                });
 
-        // Combine into a Set to avoid duplicates if any path matches both
-        const allPaths = new Set([...groupPaths, ...coloredPaths]);
-
-        allPaths.forEach(path => {
-            path.removeAttribute('class');     // Remove class like .st0
-            path.style.fill = newColor;        // Apply inline fill
-        });
-    });
-});
-
-</script>
+            </script>
 
 
 
-<script>
-    SVGInject.setOptions({
-      useCache: false, // no caching
-      copyAttributes: true, // do not copy attributes from `<img>` to `<svg>`
-      makeIdsUnique: false, // do not make ids used within the SVG unique   
-      afterInject: function(img, svg) {
-      const targetFill = 'fill:#97fa98';
-      svg.querySelectorAll('path[style]').forEach(path => {
-        const style = path.getAttribute('style');
-        if (style.includes(targetFill)) {
-          // Remove the fill from style string
-          const newStyle = style
-            .split(';')
-            .filter(part => !part.trim().startsWith('fill:#97fa98'))
-            .join(';')
-            .trim();
+            <script>
+                SVGInject.setOptions({
+                    useCache: false, // no caching
+                    copyAttributes: true, // do not copy attributes from `<img>` to `<svg>`
+                    makeIdsUnique: false, // do not make ids used within the SVG unique   
+                    afterInject: function (img, svg) {
+                        const targetFill = 'fill:#97fa98';
+                        svg.querySelectorAll('path[style]').forEach(path => {
+                            const style = path.getAttribute('style');
+                            if (style.includes(targetFill)) {
+                                // Remove the fill from style string
+                                const newStyle = style
+                                    .split(';')
+                                    .filter(part => !part.trim().startsWith('fill:#97fa98'))
+                                    .join(';')
+                                    .trim();
 
-          if (newStyle) {
-            path.setAttribute('style', newStyle);
-          } else {
-            path.removeAttribute('style');
-          }
+                                if (newStyle) {
+                                    path.setAttribute('style', newStyle);
+                                } else {
+                                    path.removeAttribute('style');
+                                }
 
-          // Add color="accent"
-          path.setAttribute('color', 'accent');
-        }
-      });
-    },
+                                // Add color="accent"
+                                path.setAttribute('color', 'accent');
+                            }
+                        });
+                    },
 
-      
-      beforeLoad: function(img) {
-      var path = "https://raw.githubusercontent.com/PrintersForAnts/MicronManual/refs/heads/main/manual/"
-      const rawSrc = img.getAttribute('src') || '';
-      console.log(rawSrc);
-      console.log(path);
-      return path + rawSrc;
-    }
-    });
-  </script>
+
+                    beforeLoad: function (img) {
+                        var path = "https://raw.githubusercontent.com/PrintersForAnts/MicronManual/refs/heads/main/manual/"
+                        const rawSrc = img.getAttribute('src') || '';
+                        console.log(rawSrc);
+                        console.log(path);
+                        return path + rawSrc;
+                    }
+                });
+            </script>
 </body>
-
 
 </html>
