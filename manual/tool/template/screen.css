@@ -12,6 +12,7 @@
     --sidebar-width: 300px;
     --page-padding: 15px;
     --content-max-width: 750px;
+    --accent: #54AB3D;
 }
 
 .light {
@@ -29,7 +30,6 @@
     --icons: #cccccc;
     --icons-hover: #005e85;
 
-    --accent: #54AB3D;
     --main: #7F7F7F;
     --links: #4183c4;
 
@@ -108,6 +108,7 @@ h5,h4 {  text-align: center; }
 .header + .header h5 {
     margin-top: 1em;
 }
+
 
 a.header:target h1:before,
 a.header:target h2:before,
@@ -220,6 +221,13 @@ table thead tr {
     
 }
 
+table tr td {
+    color: var(--main);
+}
+table tbody tr td {
+    color: var(--main);
+}
+
 .container {
     position: relative;
     width: 50%; /* Controls overall scaling */
@@ -229,49 +237,84 @@ table thead tr {
 .content-wrapper {
     display: flex;
     justify-content:center;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 25%;
+    gap: 10%;
     margin: 20px;
     text-align: left;
 }
   .hardware_svg {
     width: 50%; /* Adjust as needed */
     height: auto;
-    fill: #54AB3D;
+    fill: var(--accent);
     stroke: #008cff;
     color: var(--accent)
   }
-  .assemble_img {
+svg[color="main"] g#fill path{
+    fill: var(--main)
+}
+svg[color="accent"] g#fill path{
+    fill: var(--accent)
+}
+path[color="accent"] {
+    fill: var(--accent)
+}
+
+path.accent{
+    fill: var(--accent)
+}
+
+.assemble_img {
     width: 100%; /* Adjust as needed */
     height: 50%;
     display: inline;
-    fill: #54AB3D;
-    stroke: #008cff;
-    color: var(--accent)
-  }
-  .qr{
+}
+.qr{
     width: 30%; /* Adjust as needed */
     height: auto;
 
   }
+
+.color-toolbar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 8px 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    z-index: 9999;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.color-toolbar a i {
+    font-size: 1.5rem;
+}
 
 .image-text {
     font-size: 1.2em; /* Scales with viewport */
     width: 100%; /* Matches image width */
     max-width: 400px; /* Same as image max-width */
     text-align: justify;
+    color: var(--main);
+}
+.image-text.title {
+
+    color: var(--accent);
 }
 
 .text-title {
     font-size: 1.5em; /* Slightly larger than body text */
     font-weight: bold;
     margin-bottom: 8px;
+    color: var(--accent);
 }
 .text-container {
     width: 100%; /* Matches image width */
     max-width: 400px; /* Same as image max-width */
     text-align: center; /* Centers the title */
+    color: var(--main);
 }
 .image-container {
     width: 50%; /* Ensures image and text match */
@@ -320,6 +363,9 @@ table thead tr {
             /* Scale with the image */
             transform: translate(-50%, -50%);
 }
+.text-bubble:active {
+    cursor: grabbing;
+  }
 
 /* Different Bubble Colors */
 .bubble-red {
@@ -331,7 +377,7 @@ table thead tr {
 }
 
 .bubble-green {
-    background-color: rgba(0, 128, 0, 0.8);
+    background-color: var(--accent)
 }
 
 .bubble-yellow {
@@ -343,7 +389,7 @@ table thead tr {
 }
 
 .icon {
-    width: 20%; /* Scale the image to 50% of its container's width */
+    width: 60%; /* Scale the image to 50% of its container's width */
     height: auto; /* Maintain the aspect ratio */
  
 }

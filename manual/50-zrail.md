@@ -2,12 +2,10 @@
 
 ### RAILSTOPS
 
-
+<!-- test 123  -->
 <div class="content-wrapper">
 <div class="image-container ">
-<object type="image/svg+xml" id="svgObject" data="./images/Vectors/assembly/railstop1.svg" class="assemble_img">
-RailStop
-</object>
+<img src="images/Vectors/assembly/railstop1.svg" onload="SVGInject(this)" class="assemble_img" alt="railstop" color="accent" >
 </div>
 </div>
 <div class="content-wrapper">

@@ -2,20 +2,15 @@
 
 ### BLIND JOINTS
 
-
-
 <div class="content-wrapper">
 <div class="image-container">
-<object id="svgObject" type="image/svg+xml"  data="./images/Vectors/Extrusions/blind_joint/blind1.svg" class="assemble_img" >
-BlindJoint
-</object>
+<img src="images/Vectors/Extrusions/blind_joint/blind1.svg" class="assemble_img" alt="BlindJoint" onload="SVGInject(this)" color="accent" id="svgAccent"/>
 </div>
 <div class="image-container">
-<object type="image/svg+xml" data="./images/Vectors/Extrusions/blind_joint/blind2.svg" class="assemble_img">
-BlindJoint
-</object>
+<img src="images/Vectors/Extrusions/blind_joint/blind2.svg" class="assemble_img" alt="BlindJoint" onload="SVGInject(this)" color="accent" id="svgAccent"/>
 </div>
 </div>
+
 <div class="content-wrapper">
 <div class="image-container text-container">
 <strong class="image-text title">**BLIND JOINT BASICS**</strong>
@@ -24,17 +19,18 @@ Blind Joints provide a cost-effective and rigid assembly method. The head of the
 </p>
 </div>
 </div>
-<a class="aClick " href="https://voron.link/onjwmcd"> <span class="spanClick"><object type="image/svg+xml" data="./images/Vectors/QRCode/blind_joint_QR.svg" class="assemble_img qr objectClick "> Blindjoint Assembly Video </object></a>
+
+<a class="aClick" href="https://voron.link/onjwmcd">
+<span class="spanClick">
+<img src="images/Vectors/QRCode/blind_joint_QR.svg" class="assemble_img qr objectClick" onload="SVGInject(this)" color="accent" id="svgAccent" alt="Blindjoint Assembly Video" />
+</span>
+</a>
 
 <div class="content-wrapper">
 <div class="image-container">
-<object type="image/svg+xml" data="./images/Vectors/Extrusions/blind_joint/blind3.svg" class="assemble_img">
-BlindJoint
-</object>
+<img src="images/Vectors/Extrusions/blind_joint/blind3.svg" class="assemble_img" alt="BlindJoint" onload="SVGInject(this)" color="accent" id="svgAccent"/>
 </div>
-<div class="image-container ">
-<object type="image/svg+xml" data="./images/Vectors/Extrusions/blind_joint/blind4.svg" class="assemble_img">
-BlindJoint
-</object>
+<div class="image-container">
+<img src="images/Vectors/Extrusions/blind_joint/blind4.svg" class="assemble_img" alt="BlindJoint" onload="SVGInject(this)" color="accent" id="svgAccent"/>
 </div>
 </div>

@@ -20,9 +20,7 @@ To help assembly along you may want to label the extrusions or print the referen
 </div>
 <div class="content-wrapper container fullPage">
 <div class="image-container fullPage">
-<object type="image/svg+xml" data="./images/Vectors/Extrusions/micron_manual_extrusions/micron_manual_extrusions_main.svg" class="assemble_img">
-AllExtrusions
-</object>
+<img src="images/Vectors/Extrusions/micron_manual_extrusions/micron_manual_extrusions_main.svg" onload="SVGInject(this)" color="accent" id="svgAccent" />
 <div class="text-bubble bubble-green"  style="top: -1%; left: 15.65%; width:15%">A</div>
 <div class="text-bubble bubble-green"  style="top: 18.5%; left: 50.1%; width:45%">B</div>
 <div class="text-bubble bubble-green"  style="top: 23%; left: 79.5%; width:6%">C</div>
