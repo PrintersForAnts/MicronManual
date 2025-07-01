@@ -292,6 +292,159 @@
   }
 
 
+  function ShowHotSpot(evt,hotspotid)
+  {
+    var svgDocument = evt.target.ownerDocument;
+    var strId = "hotspot."+hotspotid;
+    var hotspot = svgDocument.getElementById(strId);
+    if(hotspot)
+      hotspot.setAttribute("opacity",".5");
+  }
+  function HideHotSpot(evt,hotspotid)
+  {
+    var svgDocument = evt.target.ownerDocument;
+    var strId = "hotspot."+hotspotid;
+    var hotspot = svgDocument.getElementById(strId);
+    if(hotspot)
+      hotspot.setAttribute("opacity","0");
+  
+    var toolTip = svgDocument.getElementById('ToolTip');
+    if(toolTip)
+      toolTip.setAttribute("visibility","hidden");
+  }
+  function ShowToolTip(evt,hotspotid,strTooltip)
+  {
+    if(strTooltip=="")
+    return;
+  
+    // change text
+    var svgDocument = evt.target.ownerDocument;
+    var tiptext = svgDocument.getElementById('ToolTipText');
+    if( !tiptext )
+    return;
+    tiptext.firstChild.nodeValue = " " + strTooltip + "  " ;
+  
+    // show tooltip before, else some refresh issue
+  
+    var toolTip = svgDocument.getElementById('ToolTip');
+    if(!toolTip)
+    return;
+  
+    toolTip.setAttribute("visibility","visible");
+    toolTip.setAttribute("opacity",".95");
+  
+    // move tooltip
+    // get viewbox
+  
+    var root = svgDocument.documentElement;
+    var vbox = (root.getAttribute("viewBox")).split(' ');
+    var x0 = parseFloat(vbox[0]);
+    var y0 = parseFloat(vbox[1]);
+    var vboxW = parseFloat(vbox[2]);
+    var vboxH = parseFloat(vbox[3]);
+  
+    // get default width of svg
+  
+    var strW = root.getAttribute("width");
+    var svgW = parseFloat(strW);
+    if(strW.indexOf('mm') != -1)
+    svgW *= 3.779;
+  
+    var strH = root.getAttribute("height");
+    var svgH = parseFloat(strH);
+    if(strH.indexOf('mm') != -1)
+    svgH *= 3.779;  	// 96 dpi  -> 96/25.4 = 3.779
+  
+    // update the viewbox / width / height if svg is embedded in html with zoom fit all
+    var realx0 = x0;
+    var realy0 = y0;
+    var realvboxW = vboxW;
+    var realvboxH = vboxH;
+    var realsvgW = svgW;
+    var realsvgH = svgH;
+  
+    if ((typeof(top) == "undefined") || (typeof(top.svgctl1) != "undefined")) // embedded in html
+    {
+      // get window size in pxl
+  
+      svgW = window.innerWidth;
+      svgH = window.innerHeight;
+  
+      // calculate real viewbox
+  
+      realsvgW = svgW;
+      realsvgH = svgH;
+      if((svgW / svgH) > (vboxW / vboxH))
+      {
+        realvboxW = (vboxH * svgW) / svgH;
+        realvboxH = vboxH;
+        realx0 = x0 - (realvboxW - vboxW)/2 ;
+      }
+      else
+      {
+        realvboxH = (vboxW * svgH) / svgW;
+        realvboxW = vboxW;
+        realy0 = y0 - (realvboxH - vboxH)/2 ;
+      }
+    }
+  
+    // get user zoom/pan
+  
+    var newScale = root.currentScale;
+    var translation = root.currentTranslate;
+  
+    // transform pxl to user unit
+  
+    var xPos = (((evt.clientX+10- translation.x)/newScale) * realvboxW)/realsvgW  + realx0 ;
+    var yPos = (((evt.clientY+5- translation.y)/newScale) * realvboxH)/ realsvgH  + realy0 ;
+    var scaleForWidth = ( (1 / newScale) * realvboxH) / realsvgH;
+  
+    // move tooltip
+  
+    toolTip.setAttribute("transform", "translate(" + xPos + "," + yPos + ")" );
+  
+    // resize tooltip
+  
+    var fontsize = 12;
+    tiptext.setAttribute("font-size",fontsize*scaleForWidth);
+    tiptext.setAttribute("y", fontsize*scaleForWidth);
+    var tipBG = svgDocument.getElementById('ToolTipBG');
+    var outline = tiptext.getBBox();
+    if(tipBG)
+    {
+      tipBG.setAttribute("stroke-width", 1*scaleForWidth);
+      tipBG.setAttribute("width", Number(outline.width) );
+      tipBG.setAttribute("height", Number(outline.height) + fontsize*.5*scaleForWidth );
+    }
+    var ToolTipShadow = svgDocument.getElementById('ToolTipShadow');
+    if(ToolTipShadow)
+    {
+      ToolTipShadow.setAttribute("width", Number(outline.width) );
+      ToolTipShadow.setAttribute("height", Number(outline.height) + fontsize*.5*scaleForWidth );
+      ToolTipShadow.setAttribute("x", 3*scaleForWidth);
+      ToolTipShadow.setAttribute("y", 3*scaleForWidth);
+    }
+  }
+  function ShowPaper()
+  {
+    var svgDocument = getDocument();
+    var paper = svgDocument.getElementById("paperID");
+    if(paper)
+    {
+      paper.setAttribute("transform","scale(1)");
+      paper.setAttribute("opacity","1");
+      paper.setAttribute("visibility","visible");
+    }
+    var svg = svgDocument.getRootElement();
+    if(svg)
+    {
+      svg.setAttribute("width","1510.000mm");
+      svg.setAttribute("height","1010.000mm");
+      svg.setAttribute("viewBox","-5.000000 -5.000000 1510.000000 1010.000000");
+    }
+  }
+
+
   // Merges any number of options objects into a new object
   function mergeOptions() {
     var mergedOptions = {};

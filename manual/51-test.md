@@ -45,5 +45,13 @@ Text goes hereText goes hereText goes hereText goes hereText goes hereText goes 
 </div>
 </div>
 
+### SAMPLE SUBSECTION 4
+<div class="content-wrapper fullPage">
+<div class="image-container fullPage">
+<img src="images/Vectors/test_view.svg" onload="SVGInject(this)"   color="accent" id="svgAccent" />
+<div class="text-bubble bubble-green">Z Drive</div>
+</div>
+</div>
+
 
 

@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const newColor = input.value;
         button.querySelector("i").style.color = newColor;
         document.documentElement.style.setProperty('--accent', newColor);
+   
         // Only target paths for the current picker (main or accent)
         // document.querySelectorAll('svg[color]').forEach(svg => {
         //     const svgColor = svg.getAttribute('color');
